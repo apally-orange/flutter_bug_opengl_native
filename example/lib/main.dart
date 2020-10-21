@@ -27,7 +27,11 @@ class OpenGLPage extends StatelessWidget {
         title: const Text('OpenGL Page'),
       ),
       body: Center(
-        child: FlutterBugOpenglNative(),
+        child: Container(
+          height: 300,
+          width: 300,
+          child: FlutterBugOpenglNative(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
@@ -53,6 +57,7 @@ class SecondPage extends StatelessWidget {
         child: Text(
             'Click on button Overview and back to application to see opengl bug'),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
         child: Icon(Icons.arrow_back),
