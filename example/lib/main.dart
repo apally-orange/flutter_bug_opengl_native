@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
 class OpenGLPage extends StatelessWidget {
   const OpenGLPage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -45,7 +45,9 @@ class OpenGLPage extends StatelessWidget {
 }
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({Key key}) : super(key: key);
+  const SecondPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

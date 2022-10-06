@@ -8,7 +8,7 @@ import io.flutter.plugin.platform.PlatformViewFactory
 
 class FlutterBugOpenglNativeFactory(): PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 
-    override fun create(context: Context, id: Int, args: Any?): PlatformView? {
-        return FlutterBugOpenglNativeView(context)
+    override fun create(context: Context?, id: Int, args: Any?): PlatformView {
+        return FlutterBugOpenglNativeView(context!!)
     }
 }

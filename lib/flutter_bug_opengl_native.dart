@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 class FlutterBugOpenglNative extends StatelessWidget {
   const FlutterBugOpenglNative({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class FlutterBugOpenglNative extends StatelessWidget {
         surfaceFactory:
             (BuildContext context, PlatformViewController controller) {
           return AndroidViewSurface(
-            controller: controller,
+            controller: controller as AndroidViewController,
             gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
             hitTestBehavior: PlatformViewHitTestBehavior.opaque,
           );
