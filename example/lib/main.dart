@@ -30,7 +30,7 @@ class OpenGLPage extends StatelessWidget {
         child: Container(
           height: 300,
           width: 300,
-          child: FlutterBugOpenglNative(),
+          child: MapViewPlatform.instance.buildView(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
