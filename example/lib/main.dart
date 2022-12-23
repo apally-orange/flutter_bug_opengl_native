@@ -27,11 +27,7 @@ class OpenGLPage extends StatelessWidget {
         title: const Text('OpenGL Page'),
       ),
       body: Center(
-        child: Container(
-          height: 300,
-          width: 300,
-          child: MapViewPlatform.instance.buildView(),
-        ),
+        child: MapViewPlatform.instance.buildView(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
