@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bug_opengl_native/bug_opengl_platform_interface.dart';
 
@@ -13,9 +16,33 @@ class MethodChannelMapView extends MapViewPlatform {
   @override
   Widget buildView() {
     if (Platform.isAndroid) {
-      return AndroidView(
+      return PlatformViewLink(
         viewType: "test/channel",
-        creationParamsCodec: const StandardMessageCodec(),
+        surfaceFactory: (
+          BuildContext context,
+          PlatformViewController controller,
+        ) {
+          return AndroidViewSurface(
+            controller: controller as AndroidViewController,
+            gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+            hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+          );
+        },
+        onCreatePlatformView: (PlatformViewCreationParams params) {
+          final AndroidViewController controller =
+              PlatformViewsService.initExpensiveAndroidView(
+            id: params.id,
+            viewType: "test/channel",
+            layoutDirection: TextDirection.ltr,
+            creationParamsCodec: const StandardMessageCodec(),
+            onFocus: () => params.onFocusChanged(true),
+          );
+          controller.addOnPlatformViewCreatedListener(
+            params.onPlatformViewCreated,
+          );
+
+          return controller;
+        },
       );
     } else {
       return const Center(

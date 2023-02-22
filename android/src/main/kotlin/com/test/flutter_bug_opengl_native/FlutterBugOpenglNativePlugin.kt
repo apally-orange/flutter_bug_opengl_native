@@ -25,7 +25,7 @@ public class FlutterBugOpenglNativePlugin():
               .platformViewRegistry
               .registerViewFactory(
                       "test/channel",
-                      FlutterBugOpenglNativeFactory())
+                      FlutterBugOpenglNativeFactory(binding.getActivity()))
     }
 
     override fun onDetachedFromActivity() {
