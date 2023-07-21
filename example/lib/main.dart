@@ -52,8 +52,7 @@ class SecondPage extends StatelessWidget {
         title: const Text('SecondPage'),
       ),
       body: Center(
-        child: Text(
-            'Click on button Overview and back to application to see opengl bug'),
+        child: MapViewPlatform.instance.buildView(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
