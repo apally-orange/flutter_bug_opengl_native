@@ -6,6 +6,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+
 /** FlutterBugOpenglNativePlugin */
 public class FlutterBugOpenglNativePlugin():
           FlutterPlugin,
@@ -24,8 +25,8 @@ public class FlutterBugOpenglNativePlugin():
       flutterPluginBinding
               .platformViewRegistry
               .registerViewFactory(
-                      "test/channel",
-                      FlutterBugOpenglNativeFactory(binding.getActivity()))
+                      FlutterBugOpenglNativeView.CHANNEL,
+                      FlutterBugOpenglNativeFactory(flutterPluginBinding.binaryMessenger, binding.getActivity()))
     }
 
     override fun onDetachedFromActivity() {

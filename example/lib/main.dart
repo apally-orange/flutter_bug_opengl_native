@@ -26,8 +26,17 @@ class OpenGLPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('OpenGL Page'),
       ),
-      body: Center(
-        child: MapViewPlatform.instance.buildView(),
+      body: Column(
+        children: [
+          Expanded(
+            child: MapViewPlatform.instance.buildView(),
+          ),
+          SizedBox(height: 5),
+          OutlinedButton(
+            onPressed: () => MapViewPlatform.instance.test(),
+            child: Text("Set Color"),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(

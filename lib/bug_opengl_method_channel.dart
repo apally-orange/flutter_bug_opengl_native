@@ -9,15 +9,19 @@ import 'package:flutter_bug_opengl_native/bug_opengl_platform_interface.dart';
 
 /// An implementation of [PluginAndroidPlatform] that uses method channels.
 class MethodChannelMapView extends MapViewPlatform {
-  /// The method channel used to interact with the native platform.
-  @visibleForTesting
-  final methodChannel = const MethodChannel('plugin_android');
+  static const _channelName = "test/channel";
+  int channelId = 0;
+
+  void test() {
+    final channel = MethodChannel("$_channelName$channelId");
+    channel.invokeMethod("test");
+  }
 
   @override
   Widget buildView() {
     if (Platform.isAndroid) {
       return PlatformViewLink(
-        viewType: "test/channel",
+        viewType: _channelName,
         surfaceFactory: (
           BuildContext context,
           PlatformViewController controller,
@@ -32,7 +36,7 @@ class MethodChannelMapView extends MapViewPlatform {
           final AndroidViewController controller =
               PlatformViewsService.initExpensiveAndroidView(
             id: params.id,
-            viewType: "test/channel",
+            viewType: _channelName,
             layoutDirection: TextDirection.ltr,
             creationParamsCodec: const StandardMessageCodec(),
             onFocus: () => params.onFocusChanged(true),
@@ -40,6 +44,9 @@ class MethodChannelMapView extends MapViewPlatform {
           controller.addOnPlatformViewCreatedListener(
             params.onPlatformViewCreated,
           );
+
+          print("DEBUG onCreatePlatformView");
+          channelId = params.id;
 
           return controller;
         },

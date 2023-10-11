@@ -16,6 +16,8 @@ abstract class MapViewPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  void test();
+
   Widget buildView() {
     throw UnimplementedError(
       'buildView() has not been implemented.',
